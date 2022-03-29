@@ -1,0 +1,45 @@
+@import "main.css";
+
+.place {
+    background: var(--color-dark);
+    overflow: scroll;
+
+    margin: 10px;
+
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 8px var(--color-inner-shadow-dark),
+    inset -5px -5px 8px var(--color-inner-shadow-dark);
+}
+
+.workplace {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-auto-columns: 1fr 1fr 1fr;
+}
+
+.workplace__board {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.workplace__character {
+    grid-row-start: 1;
+    grid-column-start: 3;
+
+    display: flex;
+}
+
+.character__image {
+    max-width: 13em;
+    align-self: end;
+}
+
+.workplace__tools {
+    grid-row-start: 2;
+    grid-column-start: 3;
+
+    background: var(--color-dark);
+}

@@ -1,0 +1,64 @@
+@import "main.css";
+
+.form {
+    max-height: 100%;
+
+    background-blend-mode: soft-light, normal;
+    box-shadow: 0 4px 4px black,
+                5px 4px 40px black,
+                inset -5px -5px 8px var(--color-trans-dark),
+                inset 5px 5px 8px var(--color-trans-dark);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+}
+
+.form__input {
+    margin: .4em;
+    padding: .7em 1.2em;
+
+    border: 1px solid var(--color-trans-dark);
+    border-radius: 15px;
+
+    font-size: 1.2rem;
+    font-family: inherit;
+    color: var(--color-dark);
+}
+
+.form__label {
+    margin: .7em 1.2em;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.form__btn {
+    margin-top: 2em;
+    padding: 0.2em 3em;
+    align-self: center;
+    background: rgba(0, 0, 0, 0);
+
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 800;
+
+    text-transform: inherit;
+
+    color: #F0FFFF;
+}
+
+.sign__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 35%;
+
+    margin: 1rem auto 1rem auto;
+    padding: 4em 5em;
+}
+
+@media screen and (max-width: 768px) {
+    .sign__form {
+        max-width: 90%;
+        padding: 4em 1em;
+    }
+}
