@@ -9,7 +9,7 @@
                 inset -5px -5px 8px var(--color-trans-dark),
                 inset 5px 5px 8px var(--color-trans-dark);
     backdrop-filter: blur(20px);
-    border-radius: 15px;
+    border-radius: 1em;
 }
 
 .form__input {
@@ -17,7 +17,7 @@
     padding: .7em 1.2em;
 
     border: 1px solid var(--color-trans-dark);
-    border-radius: 15px;
+    border-radius: 0.5em;
 
     font-size: 1.2rem;
     font-family: inherit;

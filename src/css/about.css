@@ -41,7 +41,7 @@
                 inset -5px -5px 8px var(--color-trans-dark),
                 inset 5px 5px 8px var(--color-trans-dark);
     backdrop-filter: blur(20px);
-    border-radius: 15px;
+    border-radius: 1em;
 }
 
 .skill__ring {

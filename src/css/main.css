@@ -113,7 +113,7 @@ body {
     color: var(--color-font-dark);
 
     border: 1px solid var(--color-dark);
-    border-radius: 15px;
+    border-radius: 0.5em;
     box-shadow: -2px 5px 5px var(--color-trans-dark);
 
     transition: all 500ms ease;
@@ -125,6 +125,7 @@ body {
 
 .blur {
     backdrop-filter: blur(0.3em);
+    -webkit-backdrop-filter: blur(0.3em);
 }
 
 .h1 {
@@ -179,7 +180,7 @@ body {
         width: 4.5em;
         padding: .3em;
 
-        border-radius: 5px;
+        border-radius: 0.5em;
         background-color: var(--color-font-dark);
         transition: .5s all;
         z-index: 2;
