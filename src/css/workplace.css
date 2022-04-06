@@ -1,5 +1,3 @@
-@import "main.css";
-
 .place {
     background: var(--color-dark);
     overflow: scroll;

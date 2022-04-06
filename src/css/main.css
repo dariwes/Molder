@@ -28,7 +28,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    background: url(../../images/bg-black.jpg);
+    background: url(../assets/bg-black.jpg);
     background-size: cover;
 
     font-family: 'Nunito', sans-serif;
