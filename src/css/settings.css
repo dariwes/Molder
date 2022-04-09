@@ -1,6 +1,6 @@
 .profile__form {
     display: grid;
-    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-rows: 16% 16% 16% 19% 16% 16%;
     grid-template-columns: 1fr 1fr;
 
     max-width: 65%;
@@ -53,8 +53,21 @@
 
 .profile__btn {
     grid-row-start: 5;
+    grid-row-end: 6;
     grid-column-start: 1;
     grid-column-end: 3;
+}
+
+.profile__logoff {
+    grid-row-start: 6;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    margin: auto;
+}
+
+.profile__logoff:hover {
+    box-shadow: -2px 5px 5px #ff3d63;
 }
 
 .profile__theme {

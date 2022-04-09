@@ -20,9 +20,9 @@ export const login = (email, password) => {
         .then(response => response.json())
         .then(data => {
             if (data && data.error) {
-                return null
+                return 'Incorrect email or password.'
             }
-            return data.idToken
+            return data;
         })
 }
 
@@ -46,12 +46,11 @@ export const registration = (username, email, password, password_2) => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             if (data && data.error) {
                 return data.error.message === 'EMAIL_EXISTS'
                     ? 'The email already exists'
                     : 'Something went wrong. Try later.'
             }
-            return data
+            return data;
         })
 }

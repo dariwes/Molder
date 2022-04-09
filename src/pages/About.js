@@ -1,4 +1,3 @@
-import '../css/about.css'
 import molder from '../assets/molder.png'
 import ring from '../assets/ring.png'
 import {Block} from "./Block";

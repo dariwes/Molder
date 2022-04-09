@@ -39,8 +39,6 @@
     font-weight: 800;
 
     text-transform: inherit;
-
-    color: #F0FFFF;
 }
 
 .sign__form {
@@ -50,7 +48,7 @@
 
     max-width: 35%;
 
-    margin: 1rem auto 1rem auto;
+    margin: 5rem auto 1rem auto;
     padding: 4em 5em;
 }
 

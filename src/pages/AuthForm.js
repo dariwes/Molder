@@ -1,4 +1,3 @@
-import '../css/form.css'
 import {Form} from "../components/Form";
 import {Block} from "./Block";
 import {login, registration} from "../Auth";
@@ -59,28 +58,31 @@ export class AuthForm extends Block {
                                 )
                         }
                     } else {
-                        localStorage.setItem('token', response.idToken)
+                        JSON.parse(localStorage.getItem('user')).user = response
                         document.location.pathname = WORKPLACE_ROUTE
                     }
                 })
         }
          else {
             login(email, password)
-                .then(token => {
-                    if (!token) {
+                .then(response => {
+                    if (typeof response === 'string') {
                         if (!document.querySelector('.error')) {
                             document.querySelector('.h1')
                                 .insertAdjacentHTML(
                                     'afterend',
-                                    '<p class="error">Incorrect email or password.</p>'
+                                    `<p class="error">${response}</p>`
                                 )
                         }
                     } else {
-                        localStorage.setItem('token', token)
+                        const user = JSON.parse(localStorage.getItem('user'))
+                        user.isAuth = true
+                        user.token = response.token
+                        user.id = response.localId
+                        localStorage.setItem('user', JSON.stringify(user))
                         document.location.pathname = WORKPLACE_ROUTE
                     }
                 })
         }
-
     }
 }

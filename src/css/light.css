@@ -1,0 +1,67 @@
+:root {
+    --color-block: #8149FC;
+    --color-dark: #F0FFFF;
+    --color-font-dark: #07006C;
+    --color-trans-dark: rgba(91, 121, 121, 0.5);
+    --color-hover-dark: #6358e0;
+    --color-inner-shadow-dark: rgba(49, 87, 94, 0.11);
+}
+
+body {
+    background: url(../assets/bg-white.jpg);
+}
+
+.header {
+    box-shadow: 0 8px 30px var(--color-trans-dark);
+}
+
+.footer {
+    box-shadow: 0 8px 30px var(--color-trans-dark);
+}
+
+.btn {
+    border: 1px solid  var(--color-inner-shadow-dark);
+}
+
+.block {
+    color: var(--color-dark);
+}
+
+.block__input {
+    color: var(--color-font-dark);
+    background: var(--color-dark);
+}
+
+.message {
+    /*color: var(--color-dark);*/
+    background: var(--color-dark);
+    box-shadow: 3px 3px 8px var(--color-trans-dark);
+}
+
+.message:before,
+.message:after {
+    background: var(--color-dark);
+    box-shadow: 1px 1px 3px var(--color-trans-dark);
+}
+.workplace__play .fas {
+    color: var(--color-dark);
+}
+
+.skills__skill {
+    box-shadow: 0 4px 8px var(--color-trans-dark),
+                2px 2px 4px var(--color-trans-dark),
+                inset -5px -5px 8px var(--color-inner-shadow-dark),
+                inset 5px 5px 8px var(--color-inner-shadow-dark);
+}
+
+.form {
+    box-shadow: 0 4px 4px var(--color-trans-dark),
+                5px 4px 40px var(--color-trans-dark),
+                inset -5px -5px 8px var(--color-inner-shadow-dark),
+                inset 5px 5px 8px var(--color-inner-shadow-dark);
+}
+
+.form__input {
+    color: var(--color-font-dark);
+    border: .1em solid var(--color-inner-shadow-dark);
+}

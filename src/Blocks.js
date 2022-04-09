@@ -9,7 +9,6 @@ export class Blocks {
             headers: {'Content-Type': 'application/json'}
         })
             .then(response => response.json())
-            .then(response => {console.log(response)})
     }
 
     static get(token) {
@@ -27,6 +26,5 @@ export class Blocks {
                 }
                 return response
             })
-            .then(response => {console.log(response)})
     }
 }

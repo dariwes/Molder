@@ -2,6 +2,8 @@ import logo from '../assets/logo.svg'
 
 
 export const Header = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
     return `
         <header class="header">
             <section class="container header__container">
@@ -17,8 +19,12 @@ export const Header = () => {
                 <nav class="header__nav">
                     <ul role="list">
                         <li><a href="about" class="header__about">about</a></li>
-                        <li><a href="signin" class="header__sign-in btn">sign in</a></li>
-                        <li><a href="signup" class="header__signup btn">sign up</a></li>
+                        ${user.isAuth
+                        ? '<li><a href="workplace" class="btn header__workplace">workplace</a></li>' +
+                        '<li><a href="settings" class="btn header__settings">settings</a></li>'
+                        : '<li><a href="signin" class="header__sign-in btn">sign in</a></li>' +
+                          '<li><a href="signup" class="header__signup btn">sign up</a></li>'
+                        }
                     </ul>
                 </nav>
             </section>

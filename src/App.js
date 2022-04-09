@@ -6,6 +6,7 @@ import {Settings} from "./pages/Settings";
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
 import {Block} from "./pages/Block";
+import {User} from "./models/UserModel";
 
 
 export const HOME_ROUTE = '/home'

@@ -1,3 +1,5 @@
+import {setTheme} from "../utils";
+
 export class Block {
     constructor({selector, ...props}) {
         this.$el = document.querySelector(selector)
@@ -6,6 +8,7 @@ export class Block {
     }
 
     init() {
+        setTheme(JSON.parse(localStorage.getItem('user')).theme)
         this.$el.insertAdjacentHTML('afterbegin', this.template)
     }
 
