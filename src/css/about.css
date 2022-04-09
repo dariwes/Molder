@@ -1,0 +1,62 @@
+@import "main.css";
+
+
+.about__dfn {
+    padding: 1rem 1rem 0 1rem;
+}
+
+.dfn__meaning {
+    display: block;
+    text-align: center;
+}
+
+.dfn__image {
+    max-width: 65%;
+}
+
+.dfn__definition {
+    padding: 4rem;
+    margin: auto;
+
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.about__skills {
+    display: grid;
+    grid-template-columns: 18% 18% 18% 18% 18%;
+    column-gap: 2%;
+
+    padding: 5%;
+
+    text-align: center;
+}
+
+.skills__skill {
+    padding: 10%;
+
+    background-blend-mode: soft-light, normal;
+    box-shadow: 0 4px 4px black,
+                5px 4px 40px black,
+                inset -5px -5px 8px var(--color-trans-dark),
+                inset 5px 5px 8px var(--color-trans-dark);
+    backdrop-filter: blur(20px);
+    border-radius: 1em;
+}
+
+.skill__ring {
+    display: block;
+    max-width: 40%;
+    margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .about__skills {
+        grid-template-columns: 30% 30% 30%;
+    }
+
+    .skills__skill {
+        margin-top: 1em;
+        font-size: 1.5em;
+    }
+}

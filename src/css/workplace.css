@@ -1,0 +1,73 @@
+@import "main.css";
+
+.place {
+    background: var(--color-dark);
+    overflow: scroll;
+
+    margin: 10px;
+
+    border-radius: 0.7em;
+    box-shadow: inset 5px 5px 8px var(--color-inner-shadow-dark),
+    inset -5px -5px 8px var(--color-inner-shadow-dark);
+}
+
+.workplace {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-auto-columns: 1fr 1fr 1fr;
+}
+
+.workplace__board {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.workplace__character {
+    grid-row-start: 1;
+    grid-column-start: 3;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+.character__image {
+    max-width: 13em;
+    justify-self: end;
+}
+
+.workplace__tools {
+    grid-row-start: 2;
+    grid-column-start: 3;
+
+    background: var(--color-dark);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+}
+
+.block {
+    background: #8149FC;
+
+    padding: 1em;
+    font-size: 1rem;
+    border-radius: 0.5em;
+
+    max-width: max-content;
+}
+
+.block__input {
+    display: inline;
+    height: 1rem;
+    width: 1rem;
+
+    border: none;
+    border-radius: 0.5em;
+
+    background: var(--color-font-dark);
+    color: var(--color-dark)
+}
