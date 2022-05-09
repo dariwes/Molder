@@ -6,6 +6,7 @@
     --color-trans-dark: rgba(240, 255, 255, 0.5);
     --color-hover-dark: #69F0F1FF;
     --color-inner-shadow-dark: rgba(240, 255, 255, 0.1);
+    --color-block: #8149FC;
 
     --color-light: #F0FFFF;
     --color-font-light: #09081F;
@@ -28,12 +29,26 @@ body {
     display: flex;
     flex-direction: column;
 
-    background: url(../../images/bg-black.jpg);
+    background: url(../assets/bg-black.jpg);
     background-size: cover;
 
     font-family: 'Nunito', sans-serif;
     text-transform: uppercase;
     color: var(--color-font-dark);
+}
+
+input:focus {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 .container {
@@ -72,6 +87,8 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    gap: 1rem;
 }
 
 .header__nav li {

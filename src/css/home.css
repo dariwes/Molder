@@ -1,11 +1,10 @@
-@import "main.css";
-
 .main-info {
     display: flex;
     flex-direction: column;
 
     width: 70%;
-    padding: 4em;
+
+    padding: 10em;
 }
 
 .main-info__text {
@@ -17,7 +16,8 @@
 
 .main-info__btn {
     align-self: center;
-    padding: 0.5em;
+
+    padding: .5em;
     margin-top: 2em;
 
     font-size: 2rem;

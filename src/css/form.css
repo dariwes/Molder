@@ -1,5 +1,6 @@
 @import "main.css";
 
+
 .form {
     max-height: 100%;
 
@@ -52,8 +53,15 @@
 
     max-width: 35%;
 
-    margin: 1rem auto 1rem auto;
+    margin: 5rem auto 1rem auto;
     padding: 4em 5em;
+}
+
+.error {
+    color: #ff3d63;
+    font-size: 1em;
+    text-align: center;
+    padding: 1em;
 }
 
 @media screen and (max-width: 768px) {
