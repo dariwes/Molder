@@ -1,0 +1,20 @@
+.projects {
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects__item {
+    margin: 2rem 17rem 2rem 17rem;
+    padding: 1.5rem 3rem;
+
+    box-shadow: 0 4px 4px black,
+        5px 4px 40px black,
+        inset -5px -5px 8px var(--color-trans-dark),
+        inset 5px 5px 8px var(--color-trans-dark);
+    border-radius: 1em;
+
+    color: var(--color-font-dark);
+    font-size: 1.3rem;
+    font-weight: 900;
+}

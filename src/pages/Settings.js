@@ -18,7 +18,6 @@ export class Settings extends Block {
         }
     }
 
-
     get template() {
         this.user = JSON.parse(localStorage.getItem('user'))
         if (!this.user.isAuth) {
@@ -32,15 +31,15 @@ export class Settings extends Block {
                     <img src="${userPhoto}" alt="user">
                   </div>
                   <div class="profile__info">
-                    <input type="text" class="form__input" placeholder="password" name="password" id="username" value="db not connected yet">
-                    <input type="email" class="form__input" placeholder="email" name="email" id="email" value="email@a.com">
+                    <input type="text" class="form__input" placeholder="username" name="username" id="username" value="${this.user.username}">
+                    <input type="email" class="form__input" placeholder="email" name="email" id="email" value="${this.user.email}">
                   </div>
                   <label class="profile__theme">
                     <input type="checkbox" class="profile__checkbox" ${this.user.theme === 'light' ? 'checked' : ''}">
                     <span class="profile__switch"></span>
                   </label>
                   <button type="submit" class="btn form__btn profile__btn">save changes</button>
-                  <a type="submit" class="profile__logoff btn form__btn">log off</a>
+                  <button type="submit" class="profile__logoff btn form__btn">log off</button>
                 </form>
               </section>
         `

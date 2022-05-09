@@ -6,7 +6,7 @@ import {Settings} from "./pages/Settings";
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
 import {Block} from "./pages/Block";
-import {User} from "./models/UserModel";
+import {Projects} from "./pages/Projects";
 
 
 export const HOME_ROUTE = '/home'
@@ -15,6 +15,7 @@ export const SIGNIN_ROUTE = '/signin'
 export const SIGNUP_ROUTE = '/signup'
 export const WORKPLACE_ROUTE = '/workplace'
 export const SETTINGS_ROUTE = '/settings'
+export const PROJECTS_ROUTE = '/projects'
 
 
 const routes = {
@@ -24,6 +25,7 @@ const routes = {
     [SIGNUP_ROUTE]: AuthForm,
     [WORKPLACE_ROUTE]: Workplace,
     [SETTINGS_ROUTE]: Settings,
+    [PROJECTS_ROUTE]: Projects,
 }
 
 
