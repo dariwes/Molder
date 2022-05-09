@@ -1,3 +1,6 @@
+@import "main.css";
+
+
 .form {
     max-height: 100%;
 
@@ -39,6 +42,8 @@
     font-weight: 800;
 
     text-transform: inherit;
+
+    color: #F0FFFF;
 }
 
 .sign__form {

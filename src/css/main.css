@@ -79,10 +79,15 @@ input[type=number] {
     display: none;
 }
 
+.header__nav {
+    width: 40%;
+}
+
 .header__nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     gap: 1rem;
 }
 

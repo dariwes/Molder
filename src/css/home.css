@@ -3,6 +3,7 @@
     flex-direction: column;
 
     width: 70%;
+
     padding: 10em;
 }
 
@@ -15,6 +16,7 @@
 
 .main-info__btn {
     align-self: center;
+
     padding: .5em;
     margin-top: 2em;
 

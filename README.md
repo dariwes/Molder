@@ -41,7 +41,7 @@ Shchedrova Darya, 953505
 * Width
 * Height
 ***
-###Links to pages:
+### Links to pages:
 * [Home](https://dariwes.github.io/Molder/src/home.html)
 * [About](https://dariwes.github.io/Molder/src/about.html)
 * [Sign in](https://dariwes.github.io/Molder/src/signin.html)
