@@ -21,11 +21,15 @@ export class Workplace extends Block {
 
         this.user = JSON.parse(localStorage.getItem('user'))
         Blocks.get(this.user.idToken).then(response => {
-            this.blockModels = response
             let templates = ''
-            response.forEach(block => {
-                templates += block.template + ' '
-            })
+            if (typeof response === 'string') {
+                templates = response
+            } else {
+                this.blockModels = response
+                response.forEach(block => {
+                    templates += block.template + ' '
+                })
+            }
             document.querySelector('.workplace__tools')
                 .insertAdjacentHTML('afterbegin', templates)
 
@@ -239,13 +243,13 @@ function move({left = 0, right = 0, up = 0, down = 0}) {
     } = character.getBoundingClientRect()
 
     if (left && curLeft - left > +maxLeft) {
-        character.style.left = character.style.left.slice(0, -2) - left + 'px';
+        character.style.left = parseInt(character.style.left) - left + 'px';
     } else if (right && +curRight + +right < +maxRight) {
-        character.style.left = +character.style.left.slice(0, -2) + +right + 'px';
+        character.style.left = parseInt(character.style.left) + +right + 'px';
     } else if (up && curTop - +up > +maxTop) {
-        character.style.top = character.style.top.slice(0, -2) - up + 'px';
+        character.style.top = parseInt(character.style.top) - up + 'px';
     } else if (down && +curBottom + +down < +maxBottom) {
-        character.style.top = +character.style.top.slice(0, -2) + +down + 'px';
+        character.style.top = parseInt(character.style.top) + +down + 'px';
     }
 }
 

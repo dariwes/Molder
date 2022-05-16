@@ -129,6 +129,11 @@
 .workplace__save img {
     width: 2.5em;
     cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.workplace__save img:hover {
+    transform: scale(1.1);
 }
 
 .workplace__actions {

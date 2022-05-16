@@ -1,8 +1,8 @@
 import {App} from './App'
-import {User} from "./models/UserModel";
+import {UserSettings} from "./models/UserSettingsModel";
 
 
 if (!JSON.parse(localStorage.getItem('user'))) {
-    localStorage.setItem('user', JSON.stringify(new User()));
+    localStorage.setItem('user', JSON.stringify(new UserSettings()));
 }
 new App({selector: 'body'})

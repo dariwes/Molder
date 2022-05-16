@@ -1,3 +1,6 @@
+const BLOCKS_LINK = `https://molder-it-default-rtdb.firebaseio.com/blocks.json`
+
+
 class BlockModel  {
     constructor ({id, tag, isClosing = true, isDraggable = true, blockId = '', classes = [], args = [], name = '', type = '', color = ''}) {
         this.id = id;
@@ -29,7 +32,6 @@ class BlockModel  {
 
 export class Blocks {
     static create(block) {
-        console.log(block)
         return fetch(BLOCKS_LINK, {
             method: 'POST',
             body: JSON.stringify(block),
