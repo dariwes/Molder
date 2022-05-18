@@ -243,13 +243,13 @@ function move({left = 0, right = 0, up = 0, down = 0}) {
     } = character.getBoundingClientRect()
 
     if (left && curLeft - left > +maxLeft) {
-        character.style.left = parseInt(character.style.left) - left + 'px';
+        character.style.left = character.style.left.slice(0, -2) - left + 'px';
     } else if (right && +curRight + +right < +maxRight) {
-        character.style.left = parseInt(character.style.left) + +right + 'px';
+        character.style.left = +character.style.left.slice(0, -2) + +right + 'px';
     } else if (up && curTop - +up > +maxTop) {
-        character.style.top = parseInt(character.style.top) - up + 'px';
+        character.style.top = character.style.top.slice(0, -2) - up + 'px';
     } else if (down && +curBottom + +down < +maxBottom) {
-        character.style.top = parseInt(character.style.top) + +down + 'px';
+        character.style.top = +character.style.top.slice(0, -2) + +down + 'px';
     }
 }
 
