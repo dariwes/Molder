@@ -21,7 +21,8 @@ export const Header = () => {
                         <li><a href="about" class="header__about">about</a></li>
                         ${user.isAuth
                         ? '<li><a href="workplace" class="btn header__workplace">workplace</a></li>' +
-                        '<li><a href="settings" class="btn header__settings">settings</a></li>'
+                          '<li><a href="projects" class="btn header__projects">projects</a></li>'+
+                          '<li><a href="settings" class="btn header__settings">settings</a></li>'
                         : '<li><a href="signin" class="header__sign-in btn">sign in</a></li>' +
                           '<li><a href="signup" class="header__signup btn">sign up</a></li>'
                         }

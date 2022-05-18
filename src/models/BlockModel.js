@@ -1,5 +1,9 @@
+const BLOCKS_LINK = `https://molder-it-default-rtdb.firebaseio.com/blocks.json`
+
+
 class BlockModel  {
-    constructor ({tag, isClosing = true, isDraggable = true, blockId = '', classes = [], args = [], name = '', type = '', color = ''}) {
+    constructor ({id, tag, isClosing = true, isDraggable = true, blockId = '', classes = [], args = [], name = '', type = '', color = ''}) {
+        this.id = id;
         this.tag = tag;
         this.isClosing = isClosing;
         this.isDraggable = isDraggable;
@@ -14,8 +18,8 @@ class BlockModel  {
     get template() {
         return `
             <${this.tag} 
-                id="${this.blockId}" 
-                class="${this.classes.join(' ')}" 
+                ${this.blockId ? `id="${this.blockId}"` : ''} 
+                ${this.classes ? `class="${this.classes.join(' ')}"` : ''} 
                 ${this.isDraggable ? 'draggable="true"' : ''} 
                 ${this.name ? `name="${this.name}"` : ''} 
                 ${this.type ? `type="${this.type}"` : ''} 
@@ -26,12 +30,46 @@ class BlockModel  {
 }
 
 
+export class Blocks {
+    static create(block) {
+        return fetch(BLOCKS_LINK, {
+            method: 'POST',
+            body: JSON.stringify(block),
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(response => response.json())
+    }
+
+    static get(token) {
+        if (!token) {
+            return Promise.resolve('unauthorized')
+        }
+        return fetch(BLOCKS_LINK, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response && response.error) {
+                    return 'Something went wrong.'
+                }
+                let blocks = []
+                Object.keys(response).forEach(key => {
+                    blocks.push(new BlockModel(response[key]))
+                })
+                return blocks
+            })
+    }
+}
+
+
 const MoveRightBlock = new BlockModel({
+    id: 1,
     tag: 'div',
     isClosing: true,
     isDraggable: true,
     blockId: 'block-move-right',
-    classes: ['block', 'block-move'],
+    classes: ['block', 'block-move', 'move-right'],
     args: [
         new BlockModel({tag: 'input', isClosing: false, isDraggable: false, classes: ['block__input'], name: 'right', type: 'number'}).template,
         'steps to the right'
@@ -39,11 +77,12 @@ const MoveRightBlock = new BlockModel({
 });
 
 const MoveLeftBlock = new BlockModel({
+    id: 2,
     tag: 'div',
     isClosing: true,
     isDraggable: true,
     blockId: 'block-move-left',
-    classes: ['block', 'block-move'],
+    classes: ['block', 'block-move', 'move-left'],
     args: [
         new BlockModel({tag: 'input', isClosing: false, isDraggable: false, classes: ['block__input'], name: 'left', type: 'number'}).template,
         'steps to the left'
@@ -51,11 +90,12 @@ const MoveLeftBlock = new BlockModel({
 });
 
 const MoveUpBlock = new BlockModel({
+    id: 3,
     tag: 'div',
     isClosing: true,
     isDraggable: true,
     blockId: 'block-move-up',
-    classes: ['block', 'block-move'],
+    classes: ['block', 'block-move', 'move-up'],
     args: [
         new BlockModel({tag: 'input', isClosing: false, isDraggable: false, classes: ['block__input'], name: 'up', type: 'number'}).template,
         'steps up'
@@ -63,11 +103,12 @@ const MoveUpBlock = new BlockModel({
 });
 
 const MoveDownBlock = new BlockModel({
+    id: 4,
     tag: 'div',
     isClosing: true,
     isDraggable: true,
     blockId: 'block-move-down',
-    classes: ['block', 'block-move'],
+    classes: ['block', 'block-move', 'block-down'],
     args: [
         new BlockModel({tag: 'input', isClosing: false, isDraggable: false, classes: ['block__input'], name: 'down', type: 'number'}).template,
         'steps down'
@@ -75,11 +116,12 @@ const MoveDownBlock = new BlockModel({
 });
 
 const SayBlock = new BlockModel({
+    id: 5,
     tag: 'div',
     isClosing: true,
     isDraggable: true,
     blockId: 'block-say',
-    classes: ['block', 'block-say'],
+    classes: ['block', 'block-say', 'say'],
     args: [
         'say',
         new BlockModel({tag: 'input', isClosing: false, isDraggable: false, classes: ['block__input'], type: 'text'}).template,
@@ -90,11 +132,12 @@ const SayBlock = new BlockModel({
 });
 
 const WaitBlock = new BlockModel({
+    id: 6,
     tag: 'div',
     isClosing: true,
     isDraggable: true,
     blockId: 'block-wait',
-    classes: ['block', 'block-wait'],
+    classes: ['block', 'block-wait', 'wait'],
     args: [
         'wait',
         new BlockModel({tag: 'input', isClosing: false, isDraggable: false, classes: ['block__input'], type: 'number'}).template,

@@ -58,7 +58,7 @@ export class AuthForm extends Block {
                                 )
                         }
                     } else {
-                        JSON.parse(localStorage.getItem('user')).user = response
+                        localStorage.setItem('user', JSON.stringify(response))
                         document.location.pathname = WORKPLACE_ROUTE
                     }
                 })
@@ -75,11 +75,7 @@ export class AuthForm extends Block {
                                 )
                         }
                     } else {
-                        const user = JSON.parse(localStorage.getItem('user'))
-                        user.isAuth = true
-                        user.token = response.token
-                        user.id = response.localId
-                        localStorage.setItem('user', JSON.stringify(user))
+                        localStorage.setItem('user', JSON.stringify(response))
                         document.location.pathname = WORKPLACE_ROUTE
                     }
                 })

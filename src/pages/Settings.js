@@ -1,7 +1,8 @@
 import userPhoto from "../assets/user.png";
 import {Block} from "./Block";
-import {User} from "../models/UserModel";
 import {HOME_ROUTE} from "../App";
+import {updateEmail} from "../Auth";
+import {UserSettings} from "../models/UserSettingsModel";
 
 
 export class Settings extends Block {
@@ -18,7 +19,6 @@ export class Settings extends Block {
         }
     }
 
-
     get template() {
         this.user = JSON.parse(localStorage.getItem('user'))
         if (!this.user.isAuth) {
@@ -32,15 +32,15 @@ export class Settings extends Block {
                     <img src="${userPhoto}" alt="user">
                   </div>
                   <div class="profile__info">
-                    <input type="text" class="form__input" placeholder="password" name="password" id="username" value="db not connected yet">
-                    <input type="email" class="form__input" placeholder="email" name="email" id="email" value="email@a.com">
+                    <input type="text" class="form__input" placeholder="username" name="username" id="username" value="${this.user.username}">
+                    <input type="email" class="form__input" placeholder="email" name="email" id="email" value="${this.user.email}">
                   </div>
                   <label class="profile__theme">
                     <input type="checkbox" class="profile__checkbox" ${this.user.theme === 'light' ? 'checked' : ''}">
                     <span class="profile__switch"></span>
                   </label>
                   <button type="submit" class="btn form__btn profile__btn">save changes</button>
-                  <a type="submit" class="profile__logoff btn form__btn">log off</a>
+                  <button type="submit" class="profile__logoff btn form__btn">log off</button>
                 </form>
               </section>
         `
@@ -48,18 +48,33 @@ export class Settings extends Block {
 
     updateUser (event) {
         event.preventDefault()
-        this.user = JSON.parse(localStorage.getItem('user'))
-
-        const isChecked = event.target.querySelector('.profile__checkbox').checked
-        this.user.theme = isChecked ? 'light' : 'dark'
-
-        localStorage.setItem('user', JSON.stringify(this.user))
+        let user = JSON.parse(localStorage.getItem('user'))
+        const username = event.target.querySelector('input#username').value
+        const email = event.target.querySelector('input#email').value
+        const theme = event.target.querySelector('.profile__checkbox').checked ? 'light' : 'dark'
+        if (user.email !== email) {
+            updateEmail(user.idToken, email).then(response => {
+                if (response && !response.error) {
+                    user.email = response.email
+                    user.idToken = response.idToken
+                }
+            })
+        }
+        if (user.username !== username || user.theme !== theme) {
+            console.log(user)
+            UserSettings.update({
+                [user.key]: {username, userId: user.userId, theme}
+            })
+            user.username = username
+            user.theme = theme
+        }
+        localStorage.setItem('user', JSON.stringify(user))
         window.location.reload()
     }
 
     logoff (event) {
         event.preventDefault()
-        localStorage.setItem('user', JSON.stringify(new User()))
+        localStorage.setItem('user', JSON.stringify(new UserSettings()))
         document.location.pathname = HOME_ROUTE
     }
 }

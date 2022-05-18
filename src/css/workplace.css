@@ -110,6 +110,40 @@
     color: var(--color-hover-dark);
 }
 
+.workplace__save {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.workplace__save input {
+    padding: 0.5em 1em;
+
+    border: 1px solid var(--color-trans-dark);
+    border-radius: 0.5em;
+
+    font-size: 0.8rem;
+    font-family: inherit;
+    color: var(--color-dark);
+}
+
+.workplace__save img {
+    width: 2.5em;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.workplace__save img:hover {
+    transform: scale(1.1);
+}
+
+.workplace__actions {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+}
+
 .message {
     position: absolute;
     background: var(--color-font-dark);

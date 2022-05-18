@@ -1,12 +1,16 @@
 import monster from "../assets/monster.png";
 import trash from "../assets/trash.png";
+import save from "../assets/save.png";
 import {Block} from "./Block";
-import {blocks} from "../models/BlockModel";
+import {Blocks} from "../models/BlockModel";
+import {Project} from "../models/ProjectModel";
 
 
 export class Workplace extends Block {
     constructor({selector, classes}) {
         super({selector, classes})
+        this.user = {}
+        this.blockModels = []
     }
 
     init() {
@@ -15,12 +19,45 @@ export class Workplace extends Block {
         document.body.classList.add('blur')
         document.body.style.overflow = 'hidden';
 
+        this.user = JSON.parse(localStorage.getItem('user'))
+        Blocks.get(this.user.idToken).then(response => {
+            let templates = ''
+            if (typeof response === 'string') {
+                templates = response
+            } else {
+                this.blockModels = response
+                response.forEach(block => {
+                    templates += block.template + ' '
+                })
+            }
+            document.querySelector('.workplace__tools')
+                .insertAdjacentHTML('afterbegin', templates)
+
+            Array.from(document.getElementsByClassName('block')).forEach(block => {
+                dragBlock(block.id)
+            })
+
+            const projectId = localStorage.getItem('projectId')
+            if (projectId) {
+                Project.getById(projectId).then(response => {
+                    response.blocks.forEach(item => {
+                        let styles = `style="position: absolute; left: ${item.left}px; top: ${item.top}px;"`
+                        let template = this.blockModels.find(block => block.id === +item.blockId).template
+                        template = template.slice(0, template.search('>')) + styles + template.slice(template.search('>'))
+                        document.querySelector('.workplace__board')
+                            .insertAdjacentHTML('afterbegin', template)
+                    })
+                    document.querySelector('.workplace__input').value = response.title
+                })
+                localStorage.removeItem('projectId')
+            }
+        })
+
         document.querySelector('.workplace__play')
             .addEventListener('click', this.startPlay)
 
-        Array.from(document.getElementsByClassName('block')).forEach(block => {
-            dragBlock(block.id)
-        })
+        document.querySelector('.workplace__save')
+            .addEventListener('click', this.save.bind(this))
     }
 
     get template() {
@@ -28,13 +65,18 @@ export class Workplace extends Block {
             <section class="${['workplace', ...this.props.classes].join(' ')}">
                 <section class="workplace__board place" id="workplace__board"></section>
                 <section class="workplace__character">
-                    <div class="workplace__play">
-                      <i class="fas fa-play"></i>
+                    <div class="workplace__actions">
+                        <div class="workplace__play">
+                          <i class="fas fa-play"></i>
+                        </div>
+                        <div class="workplace__save">
+                            <input type="text" class="workplace__input" value="Title">
+                            <img src="${save}" alt="save">
+                        </div>
                     </div>
                     <img src="${monster}" alt="monster" class="character__image">
                 </section>
                 <section class="workplace__tools place">
-                    ${blocks.map(block => block.template).join('')}
                 </section>
             </section>
             <img src="${trash}" alt="trash" class="workplace__trash droppable" id="workplace__trash">
@@ -62,6 +104,38 @@ export class Workplace extends Block {
             })
         })
     }
+
+    save() {
+        this.user = JSON.parse(localStorage.getItem('user'))
+        const title = document.querySelector('.workplace__input').value
+        const blocks = document.querySelector('.workplace__board').children
+        let project = {id: `p${Math.floor(Math.random() * 1000)}`, userId: this.user.userId, title, blocks: []}
+        let blockModels = this.blockModels
+        Object.keys(blocks).forEach(key => {
+            let blockId = getByClasses(blocks[key].classList, blockModels)
+            project.blocks.push({
+                blockId,
+                left: blocks[key].getBoundingClientRect().left,
+                top: blocks[key].getBoundingClientRect().y
+            })
+        })
+        Project.create(project)
+    }
+}
+
+function getByClasses(classList, blockModels) {
+    let classes = []
+    Object.keys(classList).forEach(key => {
+        if (+key || key === '0') {
+            classes.push(classList[key])
+        }
+    })
+    const block = blockModels.find(
+        block => classes.every(
+            (element, index, array) => block.classes.includes(element)
+        )
+    )
+    return block.id
 }
 
 

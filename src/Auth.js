@@ -1,6 +1,24 @@
+import {UserSettings} from "./models/UserSettingsModel";
+
 const API_KEY = ''
-const SIGNIN_LINK = ''
-const SIGNUP_LINK = ''
+const SIGNIN_LINK = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
+const SIGNUP_LINK = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
+const UPDATE_EMAIL_LINK = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key='
+
+
+export const updateEmail = (idToken, email) => {
+    return fetch(UPDATE_EMAIL_LINK + API_KEY, {
+        method: 'POST',
+        body: JSON.stringify({
+            idToken, email,
+            returnSecureToken: true
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+}
 
 
 export const login = (email, password) => {
@@ -22,7 +40,15 @@ export const login = (email, password) => {
             if (data && data.error) {
                 return 'Incorrect email or password.'
             }
-            return data;
+             return UserSettings.get(data.localId).then(userSettings => {
+                 if (userSettings) {
+                     const [key, value] = userSettings
+                     if (userSettings && !userSettings.error) {
+                         return {isAuth: true, email, idToken: data.idToken, key, ...value}
+                     }
+                     return {isAuth: true, email, idToken: data.idToken}
+                 }
+            })
         })
 }
 
@@ -51,6 +77,14 @@ export const registration = (username, email, password, password_2) => {
                     ? 'The email already exists'
                     : 'Something went wrong. Try later.'
             }
-            return data;
+            return UserSettings.create({name: data.localId, username, theme: 'dark'}).then(userSettings => {
+                if (userSettings && !userSettings.error) {
+                    return {
+                        isAuth: true, email, username, idToken: data.idToken,
+                        userId: data.localId, key: userSettings.name, theme: 'dark'
+                    }
+                }
+                return {isAuth: true, email, idToken: data.idToken, userId: data.localId, theme: 'dark'}
+            })
         })
 }
